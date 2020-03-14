@@ -6,6 +6,7 @@ from faker import Faker
 from .models import Employe
 
 import datetime
+from io import BytesIO
 # Create your tests here.
 class TestModelEmploye(TestCase):
     """
@@ -84,3 +85,22 @@ class TestListEmployeProfileEndpoint(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertEquals(response.context['employe'].first_name, 'Oumar')
         self.assertEquals(response.context['employe'].last_name, 'Diop')
+
+    def test_create_profile_route(self):
+        """
+            Test create profile endpoint
+        """
+        url = reverse('employe_app:create-employe')
+        #bad url
+        respons_not_allow = self.client.get(url)
+        self.assertEquals(respons_not_allow.status_code, 405)
+        #good url
+        img = BytesIO(b'myphotodata')
+        img.name = 'photo_khalifa.jpg'
+        response = self.client.post(url,  {
+            'first_name': 'Khalifa', 'last_name':'Diop',
+            'function': 'Journaliste',
+            'birthday': datetime.date(1992, 8, 5),
+            'photo': img,
+        }, format='json')
+        self.assertEquals(response.status_code, 201)

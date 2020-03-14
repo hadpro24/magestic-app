@@ -1,7 +1,10 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
+from django.views.decorators.http import require_http_methods
+from django.http import JsonResponse
 
 from .models import Employe
+from .forms import EmployeForm
 
 # Create your views here.
 def employe(request):
@@ -25,3 +28,16 @@ def profile(request, id_employe):
     }
     template_name = 'employe/profile.html'
     return render(request, template_name, context)
+
+@require_http_methods(["POST"])
+def create_employe(request):
+    """
+        Create employe data
+    """
+    form = EmployeForm(request.POST or None, request.FILES or None)
+    if form.is_valid():
+        form.save()
+    context = {
+        'status': True if form.is_valid() else False,
+    }
+    return JsonResponse(context, status=201)
