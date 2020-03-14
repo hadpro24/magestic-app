@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.core.files.uploadedfile import SimpleUploadedFile
 
-from .models import Employee
+from .models import Employe
 
 import datetime
 # Create your tests here.
@@ -14,10 +14,11 @@ class TestModelEmploye(TestCase):
             Initialise data model
         """
         photo = SimpleUploadedFile('profile.png', b'\x47', content_type='image/png')
-        e1 = Employee.objects.create(
-            first_name = 'Haorouna',
+        e1 = Employe.objects.create(
+            first_name = 'Harouna',
             last_name = 'Diallo',
             birthday = datetime.date(1996, 2, 5),
+            fonction = 'Directeur',
             photo = photo
         )
 
@@ -25,7 +26,7 @@ class TestModelEmploye(TestCase):
         """
             Test model, database storage
         """
-        employee = Employee.objects.all()
+        employee = Employe.objects.all()
         self.assertEquals(1, employee.count())
         self.assertEquals('Harouna', employee[0].first_name)
         self.assertEquals('Diallo', employee[0].last_name)
