@@ -33,7 +33,7 @@ class TestModelEmploye(TestCase):
         self.assertEquals('Harouna', employee[0].first_name)
         self.assertEquals('Diallo', employee[0].last_name)
 
-class TestListEmployeEndpoint(TestCase):
+class TestListEmployeProfileEndpoint(TestCase):
     """
         Test List Employe and Profile andpoint
     """
@@ -65,8 +65,7 @@ class TestListEmployeEndpoint(TestCase):
         """
             Test list employe
         """
-        url = reverse('employe:list_employe')
-
+        url = reverse('employe_app:list-employe')
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
         self.assertEquals(len(response.context['employes']), 11) #15employe store
@@ -75,14 +74,13 @@ class TestListEmployeEndpoint(TestCase):
         """
             Test profile data
         """
-        bad_url = reverse('employe:profile', kwargs={'id_employe': 999999})
-        good_url = reverse('employe:profile', kwargs={'id_employe': 11})
+        bad_url = reverse('employe_app:profile', kwargs={'id_employe': 999999})
+        good_url = reverse('employe_app:profile', kwargs={'id_employe': 11})
         #bad url profile
         response = self.client.get(bad_url)
         self.assertEquals(response.status_code, 404)
         # Good url profile
         response = self.client.get(good_url)
-        self.assertEquals(response.status_code, 202)
-        self.assertEquals(len(response.context['employe']), 1)
-        self.assertEquals(response.context['employe']['first_name'], 'Oumar')
-        self.assertEquals(response.context['employe']['last_name'], 'Diop')
+        self.assertEquals(response.status_code, 200)
+        self.assertEquals(response.context['employe'].first_name, 'Oumar')
+        self.assertEquals(response.context['employe'].last_name, 'Diop')
