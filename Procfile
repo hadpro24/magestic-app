@@ -1,1 +1,1 @@
-web: gunicorn magestic.magestic.wsgi --log-file -
+web: gunicorn magestic.wsgi --log-file -
