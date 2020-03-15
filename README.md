@@ -16,9 +16,6 @@ Application magestic challenge
 `pip install -r requirements.txt`
 `pip install -r requirements-dev.txt` #for the seed data
 
-# Move to project
-`cd magestic`
-
 # Run test
 `python manage.py test`
 

@@ -1,6 +1,10 @@
 from magestic.settings import *
 
-# DEBUG = False
+import os
+
+DEBUG = False
+
+SECRET_KEY = os.environ.get('SECRET_KEY') #store it in heroku cloud
 
 ALLOWED_HOSTS += ['magestic-test.herokuapp.com',]
 
