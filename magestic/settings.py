@@ -25,7 +25,7 @@ SECRET_KEY = 'pgki0vc62+qidbyai0j99d1i%8d3raato6uvf@ln(+^y$cj+62'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['magestic-test.herokuapp.com']
+ALLOWED_HOSTS = ['magestic-test.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
