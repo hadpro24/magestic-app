@@ -13,3 +13,5 @@ six==1.14.0
 sqlparse==0.3.1
 toml==0.10.0
 gunicorn
+django-heroku
+faker==4.0.2
