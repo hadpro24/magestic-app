@@ -12,7 +12,7 @@ class EmployeForm(forms.ModelForm):
         first_name = self.cleaned_data.get("first_name")
         last_name = self.cleaned_data.get("last_name")
         birthday = self.cleaned_data.get("birthday")
-        function = self.cleaned_data.get("fonction")
+        fonction = self.cleaned_data.get("fonction")
         photo = self.cleaned_data.get("photo")
 
         if not first_name:
@@ -21,5 +21,5 @@ class EmployeForm(forms.ModelForm):
             self.add_error("Last ne doit pas etre vide.")
         if not birthday:
             self.add_error("Birthday ne doit pas etre vide.")
-        if not fucntion:
+        if not fonction:
             self.add_error("Fonction ne doit pas etre vide.")

@@ -23,6 +23,13 @@
 
     <div class="site-section bg-light" style="padding-top:25px;">
       <div class="container">
+        {% if messages %}
+          <div class="row">
+              {% for message in messages %}
+                <div class="alert alert-success col-md-12">{{ message }}</div>
+              {% endfor %}
+          </div>
+        {% endif %}
         <div class="row">
           <p data-aos="fade-left" data-aos-delay="100" class="float-right" style="margin-left:20px;">
             <a href="#register-form" data-toggle="modal" data-target="#register-employe"
@@ -70,7 +77,11 @@
               </button>
             </div>
             <div class="modal-body col-md-12">
-              <form method="post" enctype="multipart/form-data">
+              <form method="post" enctype="multipart/form-data" action="{% url 'employe_app:create-employe' %}">
+                {% csrf_token %}
+                <div class="row col-md-12 d-none">
+                  <div class="alert alert-danger col-md-12" id="errors"></div>
+                </div>
                 <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
@@ -106,16 +117,17 @@
                        <div class="form-group">
                          <label for="photo" class="col-form-label">Photo:</label>
                          <input type="file" class="form-control" name="photo" id="photo">
+                         <!-- <img style="display: none" id="image-employe" onerror="errorCallback()"/> -->
                        </div>
                     </div>
                 </div>
 
-
+                <div class="modal-footer">
+                  <input type="submit" id="send-data" class="btn btn-primary" value="Enregistrer"/>
+                </div>
               </form>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary">Enregistrer</button>
-            </div>
+
           </div>
         </div>
       </div>
@@ -143,8 +155,32 @@
   <script src="{% static 'js/main.js' %}"></script>
   <script type="text/javascript">
        document.addEventListener('DOMContentLoaded', () => {
-         
-       })
+         console.log('Loading page...')
+          document.querySelector('#send-data').onclick = () => {
+              console.log('sending data...');
+              const first_name = document.querySelector('#first_name').value;
+              const last_name = document.querySelector('#last_name').value;
+              const fonction = document.querySelector('#fonction').value;
+              const birthday = document.querySelector('#birthday').value;
+
+              // document.querySelector('#image-employe').src = document.querySelector('#url').value;
+
+              if(first_name.trim() == '' || last_name.trim() == '' || fonction.trim() == '' || birthday.trim() == ''){
+                console.log('error first_name')
+                document.querySelector('#errors').innerHTML = "Tous les champs devoient etre remplis.";
+                document.querySelector('#errors').parentElement.classList.remove('d-none');
+                return false;
+              }
+              document.querySelector('#errors').parentElement.classList.remove('add');
+              return true;
+              // var errorCallback = function () {
+              //   document.querySelector('#errors').parentElement.classList.add('d-none');
+              //   document.querySelector('#errors').innerHTML = "Ajouter une image.";
+              //   document.querySelector('#errors').parentElement.classList.remove('d-none');
+              // }
+
+          }
+       });
   </script>
   </body>
 </html>

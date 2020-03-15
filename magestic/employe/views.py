@@ -2,6 +2,9 @@ from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.views.decorators.http import require_http_methods
 from django.http import JsonResponse
+from django.shortcuts import redirect
+from django.contrib import messages
+from django.urls import reverse
 
 from .models import Employe
 from .forms import EmployeForm
@@ -39,7 +42,7 @@ def create_employe(request):
     form = EmployeForm(request.POST or None, request.FILES or None)
     if form.is_valid():
         form.save()
-    context = {
-        'status': True if form.is_valid() else False,
-    }
-    return JsonResponse(context, status=201)
+        messages.success(request, 'Employee ajoute avec succes!')
+    else:
+        messages.error(request, "Une erreur est parvenue, reessayer.")
+    return redirect(reverse('employe_app:list-employe'), status=201)
