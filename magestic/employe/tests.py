@@ -103,4 +103,4 @@ class TestListEmployeProfileEndpoint(TestCase):
             'birthday': datetime.date(1992, 8, 5),
             'photo': img,
         }, format='json')
-        self.assertEquals(response.status_code, 201)
+        self.assertEquals(response.status_code, 302) #redirect

@@ -16,7 +16,7 @@ def employe(request):
         Employe List endpoint
     """
     # lunch_seed()
-    employes = Employe.objects.all()
+    employes = Employe.objects.all().order_by('-created_at')
     context = {
         'employes': employes,
     }

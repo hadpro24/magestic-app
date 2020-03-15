@@ -52,7 +52,7 @@
               <tbody>
                 {% for employe in employes %}
                   <tr>
-                    <th scope="row">{{ employe.id }}</th>
+                    <th scope="row">{{ forloop.counter }}</th>
                     <td><a href="{% url 'employe_app:profile' employe.id %}" style="text-decoration:underline">{{ employe.first_name }}</a></td>
                     <td>{{ employe.last_name }}</td>
                     <td>{{ employe.fonction }}</td>

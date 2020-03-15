@@ -16,10 +16,10 @@ class EmployeForm(forms.ModelForm):
         photo = self.cleaned_data.get("photo")
 
         if not first_name:
-            self.add_error("Nom ne doit pas etre vide.")
+            self.add_error(first_name, "Nom ne doit pas etre vide.")
         if not last_name:
-            self.add_error("Last ne doit pas etre vide.")
+            self.add_error(last_name, "Last ne doit pas etre vide.")
         if not birthday:
-            self.add_error("Birthday ne doit pas etre vide.")
+            self.add_error(birthday, "Birthday ne doit pas etre vide.")
         if not fonction:
-            self.add_error("Fonction ne doit pas etre vide.")
+            self.add_error(fonction, "Fonction ne doit pas etre vide.")
