@@ -5,17 +5,19 @@ from django.http import JsonResponse
 
 from .models import Employe
 from .forms import EmployeForm
+from .seed import lunch_seed
 
 # Create your views here.
 def employe(request):
     """
         Employe List endpoint
     """
+    # lunch_seed()
     employes = Employe.objects.all()
     context = {
         'employes': employes,
     }
-    template_name = 'employe/home.html'
+    template_name = 'employe/index.html'
     return render(request, template_name, context)
 
 def profile(request, id_employe):
