@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Employe list | MAGESTIC</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="HAROUNA DIALLO" />
+
+    <link rel="icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  </head>
+  <body>
+  <div class="site-wrap">
+
+
+
+    <div class="site-section bg-light" style="padding-top:25px;">
+      <div class="container">
+        <div class="row">
+          <p data-aos="fade-left" data-aos-delay="100" class="float-right" style="margin-left:20px;">
+            <a href="{% url 'employe_app:list-employe' %}"
+            class="d-none d-sm-inline-block btn btn-outline-primary rounded text-uppercase">
+                Liste employes
+            </a>
+          </p>
+        </div>
+        <div class="container">
+          <div class="row">
+             <div class="col-md-4">
+                <img src="{{ employe.photo.url }}" alt="" style="max-width:100%">
+             </div>
+             <div class="col-md-8">
+               <ul class="list-group list-group-flush">
+                 <li class="list-group-item"><strong>Nom : </strong> {{ employe.first_name }}</li>
+                 <li class="list-group-item"><strong>Prenom : </strong> {{ employe.last_name }} </li>
+                 <li class="list-group-item"><strong> Date de naissance : </strong> {{ employe.birthday }} </li>
+                 <li class="list-group-item"><strong> Fonction : </strong> {{ employe.fonction }} </li>
+                </ul>
+             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="site-footer py-2 pt-4">
+      <div class="container py-0">
+        <div class="row">
+          <div class="col-12 text-md-center text-left">
+            <p>
+              &copy; <span id="cpy-right-date"></span> <strong class="text-black">MIT Licence</strong> All Rights Reserved. <br>
+              <small>Powered by <a href="https://harouna.crd.co/" target="_blank" class="text-black">Harouna</a></small>
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+  <script src="{% static 'js/jquery-migrate-3.0.1.min.js' %}"></script>
+  <script src="{% static 'js/popper.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/jquery.stellar.min.js' %}"></script>
+  <script src="{% static 'js/aos.js' %}"></script>
+  <script src="{% static 'js/main.js' %}"></script>
+  <script type="text/javascript">
+       document.addEventListener('DOMContentLoaded', () => {
+
+       })
+  </script>
+  </body>
+</html>

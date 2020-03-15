@@ -3,7 +3,7 @@ from faker import Faker
 from .models import Employe
 from django.core.files.uploadedfile import SimpleUploadedFile
 
-fake = Faker()
+fake = Faker(['fr_FR'])
 fake.random.seed(500)
 
 photo = SimpleUploadedFile('profile.png', b'\x47', content_type='image/png')
